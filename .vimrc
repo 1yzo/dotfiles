@@ -70,7 +70,6 @@ set noshowmode
 set ignorecase
 set hidden
 syntax on
-colorscheme dracula
 
 set tabstop=2 sw=2
 set number
