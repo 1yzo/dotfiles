@@ -7,7 +7,7 @@ Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ryanoasis/vim-devicons'
@@ -71,9 +71,14 @@ nnoremap <silent> <Leader>p :CocCommand prettier.formatFile<Enter>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" fzf Shit
+" vim-javascript shit
+let g:javascript_plugin_flow = 1
+
+" fzf Shit (install ripgrep on new computer)
 set rtp+=/usr/local/opt/fzf
 nnoremap <c-p> :Files<Enter>
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git/*,node_modules/*,package-lock.json}" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " indentLine Shit
 let g:indentLine_char = '|'
@@ -83,4 +88,5 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 autocmd BufEnter NERD_tree* :LeadingSpaceDisable " prevents indentLine from messing up spacing
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git/*,node_modules/*,package-lock.json}" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+" CoC Shit
+" for new computer install all these: coc-css coc-eslint coc-flow coc-html coc-json coc-tsserver coc-yaml coc-prettier coc-styled-components
