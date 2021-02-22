@@ -16,14 +16,24 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'gmoe/vim-eslint-syntax'
+" Themes
+Plug 'morhetz/gruvbox'
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/gruvbox-material'
+Plug 'drewtempelmeyer/palenight.vim'
 call plug#end()
 
 set termguicolors
 set t_Co=256
 set t_ut=
-colorscheme gruvbox
+set background=dark
+let g:sonokai_style = 'maia'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
 
 set number
 set wildignore+=*/node_modules/*,*package-lock.json,*.swp,*.swp,*~
@@ -63,10 +73,17 @@ nnoremap <Leader>nf :NERDTreeFind<Enter>
 let NERDTreeMinimalUI = 1
 
 " coc-nvim Shit
+" for new computer install all these: coc-css coc-eslint coc-flow coc-html coc-json coc-tsserver coc-yaml coc-prettier coc-styled-components
+" let g:coc_global_extensions = [
+"   \ 'coc-tsserver',
+"   \ 'coc-eslint'
+" ]
 nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-references)
+" nnoremap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> <Leader>p :CocCommand prettier.formatFile<Enter>
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -88,5 +105,5 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 autocmd BufEnter NERD_tree* :LeadingSpaceDisable " prevents indentLine from messing up spacing
 
-" CoC Shit
-" for new computer install all these: coc-css coc-eslint coc-flow coc-html coc-json coc-tsserver coc-yaml coc-prettier coc-styled-components
+" lightline shit
+let g:lightline = {'colorscheme' : 'sonokai'}
