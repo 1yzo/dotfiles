@@ -59,7 +59,7 @@ nnoremap gb :Buffers<CR>
 nnoremap <c-e> 5<c-e>
 nnoremap <c-y> 5<c-y>
 nnoremap <Leader>bd :%bd<Enter>:e#<Enter>:bd#<Enter>
-nnoremap <Leader>d :b#<Enter>:bd#<Enter>
+nnoremap <Leader>d :bp<Enter>:bd#<Enter>
 nnoremap <Leader>s :Find<Enter>
 nnoremap <Leader>v :e ~/.config/nvim/init.vim<Enter>
 nnoremap <c-h> <c-w>h
@@ -74,10 +74,10 @@ let NERDTreeMinimalUI = 1
 
 " coc-nvim Shit
 " for new computer install all these: coc-css coc-eslint coc-flow coc-html coc-json coc-tsserver coc-yaml coc-prettier coc-styled-components
-" let g:coc_global_extensions = [
-"   \ 'coc-tsserver',
-"   \ 'coc-eslint'
-" ]
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-eslint'
+  \]
 nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-references)
@@ -96,6 +96,8 @@ set rtp+=/usr/local/opt/fzf
 nnoremap <c-p> :Files<Enter>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git/*,node_modules/*,package-lock.json}" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " indentLine Shit
 let g:indentLine_char = '|'
