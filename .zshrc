@@ -2,14 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/osmanali/.oh-my-zsh"
+export ZSH="/Users/alos1001/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --glob "!{.git,node_modules,lib,build}"'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME=robbyrussell
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -103,10 +103,18 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias use-npm-default="npm config set registry https://registry.npmjs.org/"
 alias use-npm-private="npm config set registry http://artifactory.labelinsight.com/artifactory/api/npm/npm-virtual"
-alias db="git branch | grep -v "master" | xargs git branch -D"
+alias db="git branch | grep -v "main" | xargs git branch -D"
 alias conflicts="vim $(git diff --name-only --diff-filter=U)"
 alias awsli="unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_DEFAULT_REGION; $HOME/li-users/scripts/awsli"
 alias awsenv=". $HOME/li-users/scripts/awsenv"
 
+# Random
+export GITHUB_ACCESS_TOKEN=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
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+[ -f "/Users/alos1001/.ghcup/env" ] && source "/Users/alos1001/.ghcup/env" # ghcup-env
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

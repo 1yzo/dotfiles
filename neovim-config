@@ -4,36 +4,50 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'jiangmiao/auto-pairs'
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'ryanoasis/vim-devicons'
+Plug 'akinsho/bufferline.nvim'
 Plug 'airblade/vim-gitgutter'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gmoe/vim-eslint-syntax'
+Plug 'rescript-lang/vim-rescript'
+Plug 'sheerun/vim-polyglot'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'vim-test/vim-test'
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/gruvbox-material'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'hzchirs/vim-material'
+Plug 'sainnhe/everforest'
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 set termguicolors
 set t_Co=256
 set t_ut=
 set background=dark
-let g:sonokai_style = 'maia'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
+colorscheme everforest
+" let ayucolor="mirage"
+" colorscheme ayu
+let g:everforest_background = 'hard'
+" let g:sonokai_style = 'maia'
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_disable_italic_comment = 1
+" colorscheme sonokai
 
 set number
 set wildignore+=*/node_modules/*,*package-lock.json,*.swp,*.swp,*~
@@ -43,6 +57,8 @@ set ignorecase
 set hidden
 set nohlsearch
 syntax on
+set mouse=a
+set cursorline
 
 set tabstop=2
 set shiftwidth=2
@@ -85,8 +101,12 @@ nnoremap <silent> gr <Plug>(coc-references)
 nnoremap <silent> <Leader>p :CocCommand prettier.formatFile<Enter>
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 
+
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" use auto-import when pressing enter
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " vim-javascript shit
 let g:javascript_plugin_flow = 1
@@ -108,4 +128,16 @@ let g:indentLine_leadingSpaceChar = '·'
 autocmd BufEnter NERD_tree* :LeadingSpaceDisable " prevents indentLine from messing up spacing
 
 " lightline shit
-let g:lightline = {'colorscheme' : 'sonokai'}
+" let g:lightline = {'colorscheme' : 'everforest'}
+
+" for true colors support
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" bufferline shit
+lua << EOF
+require('bufferline').setup{}
+EOF
